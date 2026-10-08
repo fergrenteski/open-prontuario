@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: prontuario-filas
+  data:
+    mongodb:
+      # Azure Cosmos DB — API MongoDB
+      uri: ${COSMOS_MONGODB_URI}
+      database: ${COSMOS_DATABASE:prontuario-filas}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Microsoft Entra ID
+          issuer-uri: https://login.microsoftonline.com/${AZURE_TENANT_ID}/v2.0
+          audiences: ${AZURE_API_CLIENT_ID}
+
+azure:
+  servicebus:
+    connection-string: ${SERVICEBUS_CONNECTION_STRING}
+    topic: eventos-atendimento
+  maps:
+    url: https://atlas.microsoft.com
+    key: ${AZURE_MAPS_KEY}
